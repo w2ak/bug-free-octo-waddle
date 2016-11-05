@@ -5,3 +5,6 @@ all: $(patsubst %.csv,%.info,$(CSV))
 
 %.info: %.csv
 	./makeinfo $< > $@
+
+%.sql: %.csv
+	./makesql $< > $@
