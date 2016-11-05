@@ -1,3 +1,8 @@
 #!/bin/bash
-file=$1
-head -n1 $1.csv > $1.info
+line=$(head -n1 $1)
+{
+  echo $line;
+  echo $line | sed 's/[^,]/-/g';
+  echo $line | sed 's/[^,]/ /g';
+} |
+sed 's/^/| /g; s/$/ |/g; s/,/ | /g; 2 s/\s/:/g'

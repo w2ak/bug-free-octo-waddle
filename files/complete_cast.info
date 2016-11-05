@@ -1,1 +1,3 @@
-id,movie_id,subject_id,status_id
+| id | movie_id | subject_id | status_id |
+|:--:|:--------:|:----------:|:---------:|
+|    |          |            |           |

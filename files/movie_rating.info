@@ -1,1 +1,3 @@
-id,movie_id,info_type_id,info
+| id | movie_id | info_type_id | info |
+|:--:|:--------:|:------------:|:----:|
+|    |          |              |      |

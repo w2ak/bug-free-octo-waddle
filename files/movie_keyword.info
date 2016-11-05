@@ -1,1 +1,3 @@
-id,movie_id,keyword_id
+| id | movie_id | keyword_id |
+|:--:|:--------:|:----------:|
+|    |          |            |
