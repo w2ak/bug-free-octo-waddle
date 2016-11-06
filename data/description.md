@@ -6,7 +6,7 @@ The whole project can be found on [github](https://www.github.com/w2ak/bug-free-
 
 ```sql
 CREATE DATABASE inf553dp;
-```
+
 
 CREATE TABLE movie(
 id integer,
@@ -76,7 +76,7 @@ FOREIGN KEY (movie_id) REFERENCES movie
 FOREIGN KEY (keyword_id) REFERENCES keyword
   ON DELETE NO ACTION ON UPDATE CASCADE
 );
-
+```
 
 
 # Query plans
