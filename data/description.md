@@ -7,6 +7,11 @@ The whole project can be found on [github](https://www.github.com/w2ak/bug-free-
 ```sql
 CREATE DATABASE inf553dp;
 
+CREATE TABLE movie_type(
+id integer,
+kind text,
+PRIMARY KEY (id)
+);
 
 CREATE TABLE movie(
 id integer,
@@ -17,13 +22,9 @@ episode_of_id integer,
 season_nr integer,
 episode_nr integer,
 series_years integer,
-PRIMARY KEY (id)
-);
-
-CREATE TABLE movie_type(
-id integer,
-kind text,
-PRIMARY KEY (id)
+PRIMARY KEY (id),
+FOREIGN KEY (kind_id) REFERENCES movie_type (id)
+  ON DELETE NO ACTION ON UPDATE CASCADE
 );
 
 CREATE TABLE movie_info(
@@ -57,6 +58,8 @@ episode_nr integer,
 note text,
 PRIMARY KEY (id),
 FOREIGN KEY (movie_id) REFERENCES movie
+  ON DELETE NO ACTION ON UPDATE CASCADE
+FOREIGN KEY (kind_id) REFERENCES movie_type (id)
   ON DELETE NO ACTION ON UPDATE CASCADE
 );
 
