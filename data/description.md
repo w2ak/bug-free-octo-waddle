@@ -65,20 +65,20 @@ CREATE TABLE aka_title(
 );
 
 CREATE TABLE keyword(
-id integer,
-keyword text,
-PRIMARY KEY(id)
+  id                integer,
+  keyword           text,
+  PRIMARY KEY(id)
 );
 
 CREATE TABLE movie_keyword(
-id integer,
-movie_id integer,
-keyword_id integer,
-PRIMARY KEY (id),
-FOREIGN KEY (movie_id) REFERENCES movie
-  ON DELETE NO ACTION ON UPDATE CASCADE,
-FOREIGN KEY (keyword_id) REFERENCES keyword
-  ON DELETE NO ACTION ON UPDATE CASCADE
+  id                integer,
+  movie_id          integer,
+  keyword_id        integer,
+  PRIMARY KEY (id),
+  FOREIGN KEY (movie_id) REFERENCES movie
+    ON DELETE NO ACTION ON UPDATE CASCADE,
+  FOREIGN KEY (keyword_id) REFERENCES keyword
+    ON DELETE NO ACTION ON UPDATE CASCADE
 );
 ```
 
