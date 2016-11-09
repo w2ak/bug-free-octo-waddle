@@ -6,4 +6,4 @@ OUTFILES:=$(patsubst %.sql,%.out,$(SQLFILES))
 all: $(OUTFILES)
 
 %.out: %.sql
-	time --output=$*.time psql inf553dp -f $*.sql > $@
+	time --output=$*.time psql inf553dp -f $< > $@
