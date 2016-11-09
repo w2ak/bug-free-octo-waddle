@@ -12,7 +12,7 @@ CREATE TABLE movie_type(
   kind              varchar(16),
   PRIMARY KEY (id)
 );
--- TODO: import the file movie_type.csv
+\copy movie_type FROM 'movie_type.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
 
 CREATE TABLE movie(
   id                integer,
@@ -22,11 +22,12 @@ CREATE TABLE movie(
   episode_of_id     integer,
   season_nr         integer,
   episode_nr        integer,
-  series_years      integer,
+  series_years      text,
   PRIMARY KEY (id),
   FOREIGN KEY (kind_id) REFERENCES movie_type (id)
     ON DELETE NO ACTION ON UPDATE CASCADE
 );
+\copy movie FROM 'movie.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
 
 CREATE TABLE movie_info(
   id                integer,
@@ -40,6 +41,7 @@ CREATE TABLE movie_info(
   FOREIGN KEY (info_type_id) REFERENCES info_type
     ON DELETE NO ACTION ON UPDATE CASCADE
 );
+\copy movie_info FROM 'movie_info.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
 
 CREATE TABLE info_type(
   id                integer,
