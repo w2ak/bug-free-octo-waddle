@@ -1,6 +1,2 @@
 #!/bin/bash
-cat $1 | {
-  while read line; do
-    echo $line | ./dissect ;
-  done;
-}
+cat $1 | ./treatdata.py --strip-and-clean
