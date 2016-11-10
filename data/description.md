@@ -125,10 +125,79 @@ CREATE TABLE movie_rating(
 CREATE TABLE company(
   id                integer,
   name              text,
-  country_code      char(4),
+  country_code      text,
   PRIMARY KEY (id)
 );
 \copy company FROM 'company.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
+
+CREATE TABLE company_type(
+  id integer,
+  kind text,
+  PRIMARY KEY (id)
+);
+\copy company_type FROM 'company_type.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
+
+CREATE TABLE movie_company(
+  id integer,
+  movie_id integer,
+  company_id integer,
+  company_type_id integer,
+  note text,
+  PRIMARY KEY (id),
+  FOREIGN KEY (movie_id) REFERENCES movie (id)
+    ON DELETE NO ACTION ON UPDATE CASCADE,
+  FOREIGN KEY (company_id) REFERENCES company (id)
+    ON DELETE NO ACTION ON UPDATE CASCADE,
+  FOREIGN KEY (company_type_id) REFERENCES company_type (id)
+    ON DELTE NO ACTION ON UPDATE CASCADE
+);
+\copy movie_company FROM 'movie_company.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
+
+CREATE TABLE person(
+  id integer,
+  name text,
+  gender char,
+  PRIMARY KEY (id)
+);
+\copy person FROM 'person.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
+
+CREATE TABLE person_info(
+  id integer,
+  person_id integer,
+  info_type_id integer,
+  info text,
+  note text,
+  PRIMARY KEY (id),
+  FOREIGN KEY (person_id) REFERENCES person (id)
+    ON DELTE NO ACTION ON UPDATE CASCADE,
+  FOREIGN KEY (info_type_id) REFERENCES info_type (id)
+    ON DELTE NO ACTION ON UPDATE CASCADE
+);
+\copy person_info FROM 'person_info.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
+
+CREATE TABLE aka_name(
+  id integer,
+  person_id integer,
+  name text,
+  PRIMARY KEY (id),
+  FOREIGN KEY (person_id) REFERENCES person (id)
+    ON DELTE NO ACTION ON UPDATE CASCADE
+);
+\copy aka_name FROM 'aka_name.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
+
+CREATE TABLE role_type(
+  id integer,
+  role text,
+  PRIMARY_KEY (id)
+);
+\copy role_type FROM 'role_type.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
+
+CREATE TABLE char_name(
+  id integer,
+  name text,
+  PRIMARY KEY (id)
+);
+\copy char_name FROM 'char_name.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
 ```
 
 
