@@ -211,12 +211,34 @@ CREATE TABLE cast_info(
     ON DELETE NO ACTION ON UPDATE CASCADE,
   FOREIGN KEY (movie_id) REFERENCES movie (id)
     ON DELETE NO ACTION ON UPDATE CASCADE,
-  FOREIGN KEY (person_role_id) REFERENCES char_name (id) -- TODO : CHECK
+  FOREIGN KEY (person_role_id) REFERENCES char_name (id)
     ON DELETE NO ACTION ON UPDATE CASCADE,
   FOREIGN KEY (role_id) REFERENCES role_type (id)
     ON DELETE NO ACTION ON UPDATE CASCADE
 );
 \copy cast_info FROM 'cast_info.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
+
+CREATE TABLE comp_cast_type(
+  id                integer,
+  kind              varchar(20),
+  PRIMARY KEY (id)
+);
+\copy comp_cast_type FROM 'comp_cast_type.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
+
+CREATE TABLE complete_cast(
+  id                integer,
+  movie_id          integer,
+  subject_id        integer,
+  status_id         integer,
+  PRIMARY KEY (id),
+  FOREIGN KEY (movie_id) REFERENCES movie (id)
+    ON DELETE NO ACTION ON UPDATE CASCADE,
+  FOREIGN KEY (subject_id) REFERENCES comp_cast_type (id)
+    ON DELETE NO ACTION ON UPDATE CASCADE,
+  FOREIGN KEY (status_id) REFERENCES comp_cast_type (id)
+    ON DELETE NO ACTION ON UPDATE CASCADE
+);
+\copy complete_cast FROM 'complete_cast.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
 ```
 
 

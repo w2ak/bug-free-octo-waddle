@@ -8,8 +8,8 @@
 | char_name      | X    |
 | company        | X    |
 | company_type   | X    |
-| comp_cast_type |      |
-| complete_cast  |      |
+| comp_cast_type | X    |
+| complete_cast  | X    |
 | info_type      | X    |
 | keyword        | X    |
 | link_type      | X    |
