@@ -131,18 +131,18 @@ CREATE TABLE company(
 \copy company FROM 'company.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
 
 CREATE TABLE company_type(
-  id integer,
-  kind text,
+  id                integer,
+  kind              text,
   PRIMARY KEY (id)
 );
 \copy company_type FROM 'company_type.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
 
 CREATE TABLE movie_company(
-  id integer,
-  movie_id integer,
-  company_id integer,
-  company_type_id integer,
-  note text,
+  id                integer,
+  movie_id          integer,
+  company_id        integer,
+  company_type_id   integer,
+  note              text,
   PRIMARY KEY (id),
   FOREIGN KEY (movie_id) REFERENCES movie (id)
     ON DELETE NO ACTION ON UPDATE CASCADE,
@@ -154,19 +154,19 @@ CREATE TABLE movie_company(
 \copy movie_company FROM 'movie_company.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
 
 CREATE TABLE person(
-  id integer,
-  name text,
-  gender char,
+  id                integer,
+  name              text,
+  gender            char,
   PRIMARY KEY (id)
 );
 \copy person FROM 'person.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
 
 CREATE TABLE person_info(
-  id integer,
-  person_id integer,
-  info_type_id integer,
-  info text,
-  note text,
+  id                integer,
+  person_id         integer,
+  info_type_id      integer,
+  info              text,
+  note              text,
   PRIMARY KEY (id),
   FOREIGN KEY (person_id) REFERENCES person (id)
     ON DELETE NO ACTION ON UPDATE CASCADE,
@@ -176,9 +176,9 @@ CREATE TABLE person_info(
 \copy person_info FROM 'person_info.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
 
 CREATE TABLE aka_name(
-  id integer,
-  person_id integer,
-  name text,
+  id                integer,
+  person_id         integer,
+  name              text,
   PRIMARY KEY (id),
   FOREIGN KEY (person_id) REFERENCES person (id)
     ON DELETE NO ACTION ON UPDATE CASCADE
@@ -186,18 +186,37 @@ CREATE TABLE aka_name(
 \copy aka_name FROM 'aka_name.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
 
 CREATE TABLE role_type(
-  id integer,
-  role text,
+  id                integer,
+  role              text,
   PRIMARY_KEY (id)
 );
 \copy role_type FROM 'role_type.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
 
 CREATE TABLE char_name(
-  id integer,
-  name text,
+  id                integer,
+  name              text,
   PRIMARY KEY (id)
 );
 \copy char_name FROM 'char_name.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
+
+CREATE TABLE cast_info(
+  id                integer,
+  person_id         integer,
+  movie_id          integer,
+  person_role_id    integer,
+  note              text,
+  role_id           integer,
+  PRIMARY KEY (id),
+  FOREIGN KEY (person_id) REFERENCES person (id)
+    ON DELETE NO ACTION ON UPDATE CASCADE,
+  FOREIGN KEY (movie_id) REFERENCES movie (id)
+    ON DELETE NO ACTION ON UPDATE CASCADE,
+  FOREIGN KEY (person_role_id) REFERENCES char_name (id) -- TODO : CHECK
+    ON DELETE NO ACTION ON UPDATE CASCADE,
+  FOREIGN KEY (role_id) REFERENCES role_type (id)
+    ON DELETE NO ACTION ON UPDATE CASCADE
+);
+\copy cast_info FROM 'cast_info.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
 ```
 
 
