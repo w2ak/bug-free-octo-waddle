@@ -149,7 +149,7 @@ CREATE TABLE movie_company(
   FOREIGN KEY (company_id) REFERENCES company (id)
     ON DELETE NO ACTION ON UPDATE CASCADE,
   FOREIGN KEY (company_type_id) REFERENCES company_type (id)
-    ON DELTE NO ACTION ON UPDATE CASCADE
+    ON DELETE NO ACTION ON UPDATE CASCADE
 );
 \copy movie_company FROM 'movie_company.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
 
@@ -169,9 +169,9 @@ CREATE TABLE person_info(
   note text,
   PRIMARY KEY (id),
   FOREIGN KEY (person_id) REFERENCES person (id)
-    ON DELTE NO ACTION ON UPDATE CASCADE,
+    ON DELETE NO ACTION ON UPDATE CASCADE,
   FOREIGN KEY (info_type_id) REFERENCES info_type (id)
-    ON DELTE NO ACTION ON UPDATE CASCADE
+    ON DELETE NO ACTION ON UPDATE CASCADE
 );
 \copy person_info FROM 'person_info.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
 
@@ -181,7 +181,7 @@ CREATE TABLE aka_name(
   name text,
   PRIMARY KEY (id),
   FOREIGN KEY (person_id) REFERENCES person (id)
-    ON DELTE NO ACTION ON UPDATE CASCADE
+    ON DELETE NO ACTION ON UPDATE CASCADE
 );
 \copy aka_name FROM 'aka_name.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
 
