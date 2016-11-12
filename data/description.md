@@ -152,11 +152,11 @@ CREATE TABLE movie_company(
   note              text,
   PRIMARY KEY (id),
   FOREIGN KEY (movie_id) REFERENCES movie (id)
-    ON DELETE NO ACTION ON UPDATE CASCADE,
+    ON DELETE RESTRICT ON UPDATE CASCADE,
   FOREIGN KEY (company_id) REFERENCES company (id)
-    ON DELETE NO ACTION ON UPDATE CASCADE,
+    ON DELETE RESTRICT ON UPDATE CASCADE,
   FOREIGN KEY (company_type_id) REFERENCES company_type (id)
-    ON DELETE NO ACTION ON UPDATE CASCADE
+    ON DELETE RESTRICT ON UPDATE CASCADE
 );
 \copy movie_company FROM 'movie_company.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
 

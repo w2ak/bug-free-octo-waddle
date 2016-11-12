@@ -6,14 +6,14 @@
 |     5 | aka_title      | X    |   469532 |   469532 |
 |       | cast_info      | X    |          |          |
 |       | char_name      | X    |          |          |
-|       | company        | X    |          |          |
-|       | company_type   | X    |          |          |
+|    11 | company        | X    |   322454 |   322454 |
+|    12 | company_type   | X    |        4 |        4 |
 |       | comp_cast_type | X    |          |          |
 |       | complete_cast  | X    |          |          |
 |     3 | info_type      | X    |      113 |      113 |
 |     6 | keyword        | X    |   196263 |   196263 |
 |     8 | link_type      | X    |       18 |       18 |
-|       | movie_company  | X    |          |          |
+|    13 | movie_company  | X    |  4290510 |  4290510 |
 |     2 | movie          | X    |  3902974 |  3902974 |
 |     4 | movie_info     | X    | 21530216 | 21530216 |
 |     7 | movie_keyword  | X    |  6618808 |  6618808 |
