@@ -96,7 +96,7 @@ CREATE TABLE movie_keyword(
 
 CREATE TABLE link_type(
   id                integer,
-  link              varchar(13),
+  link              varchar(32),
   PRIMARY KEY (id)
 );
 \copy link_type FROM 'link_type.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
@@ -108,11 +108,11 @@ CREATE TABLE movie_link(
   link_type_id      integer,
   PRIMARY KEY (id),
   FOREIGN KEY (movie_id) REFERENCES movie (id)
-    ON DELETE NO ACTION ON UPDATE CASCADE,                -- TODO : SHORTEN
+    ON DELETE RESTRICT ON UPDATE CASCADE,
   FOREIGN KEY (linked_movie_id) REFERENCES movie (id)
-    ON DELETE NO ACTION ON UPDATE CASCADE,
+    ON DELETE RESTRICT ON UPDATE CASCADE,
   FOREIGN KEY (link_type_id) REFERENCES link_type (id)
-    ON DELETE NO ACTION ON UPDATE CASCADE
+    ON DELETE RESTRICT ON UPDATE CASCADE
 );
 \copy movie_link FROM 'movie_link.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
 

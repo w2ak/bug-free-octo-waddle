@@ -12,12 +12,12 @@
 |       | complete_cast  | X    |          |          |
 |     3 | info_type      | X    |      113 |      113 |
 |     6 | keyword        | X    |   196263 |   196263 |
-|       | link_type      | X    |          |          |
+|     8 | link_type      | X    |       18 |       18 |
 |       | movie_company  | X    |          |          |
 |     2 | movie          | X    |  3902974 |  3902974 |
 |     4 | movie_info     | X    | 21530216 | 21530216 |
 |     7 | movie_keyword  | X    |  6618808 |  6618808 |
-|       | movie_link     | X    |          |          |
+|     9 | movie_link     | X    |     9999 |     9999 |
 |       | movie_rating   | X    |          |          |
 |     1 | movie_type     | X    |        7 |        7 |
 |       | person         | X    |          |          |
