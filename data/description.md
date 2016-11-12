@@ -188,14 +188,14 @@ CREATE TABLE aka_name(
   name              text,
   PRIMARY KEY (id),
   FOREIGN KEY (person_id) REFERENCES person (id)
-    ON DELETE NO ACTION ON UPDATE CASCADE
+    ON DELETE RESTRICT ON UPDATE CASCADE
 );
 \copy aka_name FROM 'aka_name.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
 
 CREATE TABLE role_type(
   id                integer,
   role              text,
-  PRIMARY_KEY (id)
+  PRIMARY KEY (id)
 );
 \copy role_type FROM 'role_type.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
 
@@ -215,13 +215,13 @@ CREATE TABLE cast_info(
   role_id           integer,
   PRIMARY KEY (id),
   FOREIGN KEY (person_id) REFERENCES person (id)
-    ON DELETE NO ACTION ON UPDATE CASCADE,
+    ON DELETE RESTRICT ON UPDATE CASCADE,
   FOREIGN KEY (movie_id) REFERENCES movie (id)
-    ON DELETE NO ACTION ON UPDATE CASCADE,
+    ON DELETE RESTRICT ON UPDATE CASCADE,
   FOREIGN KEY (person_role_id) REFERENCES char_name (id)
-    ON DELETE NO ACTION ON UPDATE CASCADE,
+    ON DELETE RESTRICT ON UPDATE CASCADE,
   FOREIGN KEY (role_id) REFERENCES role_type (id)
-    ON DELETE NO ACTION ON UPDATE CASCADE
+    ON DELETE RESTRICT ON UPDATE CASCADE
 );
 \copy cast_info FROM 'cast_info.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
 

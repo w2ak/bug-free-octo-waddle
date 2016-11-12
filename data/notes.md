@@ -2,10 +2,10 @@
 
 | Order | Table name     | Done | Imported | In csv   |
 | -----:| -------------- |:----:| --------:| --------:|
-|       | aka_name       | X    |          |          |
+|    16 | aka_name       | X    |  1174043 |  1174043 |
 |     5 | aka_title      | X    |   469532 |   469532 |
-|       | cast_info      | X    |          |          |
-|       | char_name      | X    |          |          |
+|    19 | cast_info      | X    | 53659391 | 53659391 |
+|    18 | char_name      | X    |  4009911 |  4009911 |
 |    11 | company        | X    |   322454 |   322454 |
 |    12 | company_type   | X    |        4 |        4 |
 |       | comp_cast_type | X    |          |          |
@@ -22,6 +22,6 @@
 |     1 | movie_type     | X    |        7 |        7 |
 |    14 | person         | X    |  5775416 |  5775416 |
 |    15 | person_info    | X    |  3754545 |  3754545 |
-|       | role_type      | X    |          |          |
+|    17 | role_type      | X    |       12 |       12 |
 
 # Tables descriptions
