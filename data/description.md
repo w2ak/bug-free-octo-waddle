@@ -239,11 +239,11 @@ CREATE TABLE complete_cast(
   status_id         integer,
   PRIMARY KEY (id),
   FOREIGN KEY (movie_id) REFERENCES movie (id)
-    ON DELETE NO ACTION ON UPDATE CASCADE,
+    ON DELETE RESTRICT ON UPDATE CASCADE,
   FOREIGN KEY (subject_id) REFERENCES comp_cast_type (id)
-    ON DELETE NO ACTION ON UPDATE CASCADE,
+    ON DELETE RESTRICT ON UPDATE CASCADE,
   FOREIGN KEY (status_id) REFERENCES comp_cast_type (id)
-    ON DELETE NO ACTION ON UPDATE CASCADE
+    ON DELETE RESTRICT ON UPDATE CASCADE
 );
 \copy complete_cast FROM 'complete_cast.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
 ```

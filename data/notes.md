@@ -8,8 +8,8 @@
 |    18 | char_name      | X    |  4009911 |  4009911 |
 |    11 | company        | X    |   322454 |   322454 |
 |    12 | company_type   | X    |        4 |        4 |
-|       | comp_cast_type | X    |          |          |
-|       | complete_cast  | X    |          |          |
+|    20 | comp_cast_type | X    |        4 |        4 |
+|    21 | complete_cast  | X    |   135086 |   135086 |
 |     3 | info_type      | X    |      113 |      113 |
 |     6 | keyword        | X    |   196263 |   196263 |
 |     8 | link_type      | X    |       18 |       18 |
