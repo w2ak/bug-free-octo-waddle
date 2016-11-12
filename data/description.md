@@ -61,12 +61,19 @@ CREATE TABLE aka_title(
   episode_nr        integer,
   note              text,
   PRIMARY KEY (id),
-  FOREIGN KEY (movie_id) REFERENCES movie (id)
-    ON DELETE NO ACTION ON UPDATE CASCADE
   FOREIGN KEY (kind_id) REFERENCES movie_type (id)
-    ON DELETE NO ACTION ON UPDATE CASCADE
+    ON DELETE RESTRICT ON UPDATE CASCADE
 );
 \copy aka_title FROM 'aka_title.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
+UPDATE aka_title
+  SET movie_id=NULL
+  WHERE movie_id=0;
+ALTER TABLE aka_title
+  ADD CONSTRAINT movie_id_fkey
+  FOREIGN KEY (movie_id)
+  REFERENCES movie (id)
+  ON DELETE RESTRICT
+  ON UPDATE CASCADE;
 
 CREATE TABLE keyword(
   id                integer,

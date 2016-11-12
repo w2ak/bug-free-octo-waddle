@@ -3,7 +3,7 @@
 | Order | Table name     | Done | Imported | In csv   |
 | -----:| -------------- |:----:| --------:| --------:|
 |       | aka_name       | X    |          |          |
-|       | aka_title      | X    |          |          |
+|     5 | aka_title      | X    |   469532 |   469532 |
 |       | cast_info      | X    |          |          |
 |       | char_name      | X    |          |          |
 |       | company        | X    |          |          |
