@@ -1,0 +1,23 @@
+#!/bin/bash
+i=0;
+out="";
+mkdir -p imports/
+cat description.md            |   # get sql code from description
+sed -n '/^```sql$/,/^```$/ p' |   # isolating sql code
+sed '/^```sql$/ d; /^```$/ d' |   # removing first and last line
+sed 's/\\/\\\\/g'             | { # super-escaping '\'
+  while read line; do
+    dbname=$(echo $line                                    | # try and get
+             grep "^CREATE TABLE"                          | # table name
+             sed -r 's/^CREATE TABLE\s*([^ ]*)\s*\(.*$/\1/' );
+    if [ -n "$dbname" ]; then                     # if we got a table name
+      echo $dbname;
+      out=$(printf "%02d_%s.sql" "$i" "$dbname");                   # change out file
+      printf "DROP TABLE IF EXISTS %s;\n" "$dbname" > imports/$out  # clean out file
+      i=$((i+1));                                                   # i++
+    fi;
+    if [ -n "$out" ]; then
+      printf "%s\n" "$line" >> imports/$out       # print code line in out
+    fi;
+  done;
+}
