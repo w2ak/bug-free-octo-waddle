@@ -10,7 +10,7 @@
 |       | company_type   | X    |          |          |
 |       | comp_cast_type | X    |          |          |
 |       | complete_cast  | X    |          |          |
-|       | info_type      | X    |          |          |
+|     3 | info_type      | X    |      113 |      113 |
 |       | keyword        | X    |          |          |
 |       | link_type      | X    |          |          |
 |       | movie_company  | X    |          |          |

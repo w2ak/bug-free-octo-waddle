@@ -29,6 +29,13 @@ CREATE TABLE movie(
 );
 \copy movie FROM 'movie.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
 
+CREATE TABLE info_type(
+  id                integer,
+  info              text,
+  PRIMARY KEY (id)
+);
+\copy info_type FROM 'info_type.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
+
 CREATE TABLE movie_info(
   id                integer,
   movie_id          integer,
@@ -42,13 +49,6 @@ CREATE TABLE movie_info(
     ON DELETE NO ACTION ON UPDATE CASCADE
 );
 \copy movie_info FROM 'movie_info.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
-
-CREATE TABLE info_type(
-  id                integer,
-  info              text,
-  PRIMARY KEY (id)
-);
-\copy info_type FROM 'info_type.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
 
 CREATE TABLE aka_title(
   id                integer,
