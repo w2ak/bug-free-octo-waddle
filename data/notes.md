@@ -20,8 +20,8 @@
 |     9 | movie_link     | X    |     9999 |     9999 |
 |    10 | movie_rating   | X    |  2023184 |  2023184 |
 |     1 | movie_type     | X    |        7 |        7 |
-|       | person         | X    |          |          |
-|       | person_info    | X    |          |          |
+|    14 | person         | X    |  5775416 |  5775416 |
+|    15 | person_info    | X    |  3754545 |  3754545 |
 |       | role_type      | X    |          |          |
 
 # Tables descriptions
