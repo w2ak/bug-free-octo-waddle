@@ -11,12 +11,12 @@
 |       | comp_cast_type | X    |          |          |
 |       | complete_cast  | X    |          |          |
 |     3 | info_type      | X    |      113 |      113 |
-|       | keyword        | X    |          |          |
+|     6 | keyword        | X    |   196263 |   196263 |
 |       | link_type      | X    |          |          |
 |       | movie_company  | X    |          |          |
 |     2 | movie          | X    |  3902974 |  3902974 |
 |     4 | movie_info     | X    | 21530216 | 21530216 |
-|       | movie_keyword  | X    |          |          |
+|     7 | movie_keyword  | X    |  6618808 |  6618808 |
 |       | movie_link     | X    |          |          |
 |       | movie_rating   | X    |          |          |
 |     1 | movie_type     | X    |        7 |        7 |

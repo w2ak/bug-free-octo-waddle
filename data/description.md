@@ -88,9 +88,9 @@ CREATE TABLE movie_keyword(
   keyword_id        integer,
   PRIMARY KEY (id),
   FOREIGN KEY (movie_id) REFERENCES movie (id)
-    ON DELETE NO ACTION ON UPDATE CASCADE,
+    ON DELETE RESTRICT ON UPDATE CASCADE,
   FOREIGN KEY (keyword_id) REFERENCES keyword
-    ON DELETE NO ACTION ON UPDATE CASCADE
+    ON DELETE RESTRICT ON UPDATE CASCADE
 );
 \copy movie_keyword FROM 'movie_keyword.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
 
