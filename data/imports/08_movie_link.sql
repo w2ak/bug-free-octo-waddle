@@ -6,7 +6,7 @@ linked_movie_id   integer,
 link_type_id      integer,
 PRIMARY KEY (id),
 FOREIGN KEY (movie_id) REFERENCES movie (id)
-ON DELETE RESTRICT ON UPDATE CASCADE,                -- TODO : SHORTEN
+ON DELETE RESTRICT ON UPDATE CASCADE,
 FOREIGN KEY (linked_movie_id) REFERENCES movie (id)
 ON DELETE RESTRICT ON UPDATE CASCADE,
 FOREIGN KEY (link_type_id) REFERENCES link_type (id)

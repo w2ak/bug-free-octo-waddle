@@ -18,7 +18,7 @@
 |     4 | movie_info     | X    | 21530216 | 21530216 |
 |     7 | movie_keyword  | X    |  6618808 |  6618808 |
 |     9 | movie_link     | X    |     9999 |     9999 |
-|       | movie_rating   | X    |          |          |
+|    10 | movie_rating   | X    |  2023184 |  2023184 |
 |     1 | movie_type     | X    |        7 |        7 |
 |       | person         | X    |          |          |
 |       | person_info    | X    |          |          |
