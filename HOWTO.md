@@ -1,4 +1,6 @@
-# Load one of the tables
+# Loading data from CSV files
+
+## Load one of the tables
 
 1. Chdir to the folder containing the description.
 
@@ -29,6 +31,18 @@ neze@pc:files/$ psql inf553dp
 ```
 inf553dp=# \i ../data/imports/00_movie_type.sql
 ```
+
+## Load all of the tables
+
+Same as for one table, but you have to load the good file.
+
+5. Load the generic import sql file
+
+```
+inf553dp=# \i ../data/imports/import.sql
+```
+
+**_Advice_**: You might want to start this and let it run through the night.
 
 # Small tasks
 
