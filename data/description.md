@@ -25,7 +25,7 @@ CREATE TABLE movie(
   series_years      text,
   PRIMARY KEY (id),
   FOREIGN KEY (kind_id) REFERENCES movie_type (id)
-    ON DELETE NO ACTION ON UPDATE CASCADE
+    ON DELETE RESTRICT ON UPDATE CASCADE
 );
 \copy movie FROM 'movie.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
 

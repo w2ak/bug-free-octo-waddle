@@ -14,7 +14,7 @@
 |       | keyword        | X    |          |          |
 |       | link_type      | X    |          |          |
 |       | movie_company  | X    |          |          |
-|       | movie          | X    |          |          |
+|     2 | movie          | X    |  3902974 |  3902974 |
 |       | movie_info     | X    |          |          |
 |       | movie_keyword  | X    |          |          |
 |       | movie_link     | X    |          |          |
