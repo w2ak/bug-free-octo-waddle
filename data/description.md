@@ -248,6 +248,8 @@ CREATE TABLE complete_cast(
 \copy complete_cast FROM 'complete_cast.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
 ```
 
+# Queries
+
 
 # Query plans
 
