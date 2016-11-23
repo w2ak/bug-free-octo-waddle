@@ -7,6 +7,7 @@ The whole project can be found on [github](https://www.github.com/w2ak/bug-free-
 ```sql
 CREATE DATABASE inf553dp;
 
+Merge branch 'master' of https://github.com/w2ak/bug-free-octo-waddle
 CREATE TABLE movie_type(
   id                integer,
   kind              varchar(16),
