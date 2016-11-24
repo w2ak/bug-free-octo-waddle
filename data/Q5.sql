@@ -1,5 +1,5 @@
 WITH movies_directors (
-    SELECT (movie_id,COUNT(*) directors_per_movie)
+    SELECT (movie_id,COUNT(*) AS directors_per_movie)
     FROM (
         SELECT (movie_id,person_id)
         FROM cast_info
