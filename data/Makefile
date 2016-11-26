@@ -8,6 +8,10 @@ all: $(OUTFILES)
 %.out: %.sql
 	time --output=$*.time psql inf553dp -f $< > $@
 
+clean:
+	find -type f -name '*.out' -delete
+	find -type f -name '*.time' -delete
+
 imports:
 	rm -f imports/*.sql
 	./.makeimports
