@@ -1,16 +1,30 @@
-WITH directors_actors AS (
-    SELECT (person_id)
-    FROM cast_info
-    WHERE (role_id = ACTOR (corriger)!!!) look at role_type table
-
-    INTERSECT
-
-    SELECT (person_id)
-    FROM cast_info
-    WHERE (role_id = DIRECTOR (corriger)!!!)    
+-- Question 4
+-- Find the names of all the people that are both actor and director, and order them by name.
+WITH actors AS (
+  -- SELECT person_id
+  SELECT DISTINCT person_id
+  FROM cast_info
+  INNER JOIN role_type
+  ON role_id = role_type.id
+  AND role = 'actor'
+),
+directors AS (
+  -- SELECT person_id
+  SELECT DISTINCT person_id
+  FROM cast_info
+  INNER JOIN role_type
+  ON role_id = role_type.id
+  AND role = 'director'
+),
+"both" AS (
+  -- SELECT DISTINCT actors.person_id
+  SELECT actors.person_id
+  FROM actors
+  INNER JOIN directors
+  ON actors.person_id = directors.person_id
 )
-SELECT name
+SELECT person.name
 FROM person
-INNER JOIN directors_actors
-ON directors_actors.person_id=person.id
-ORDER BY name ASC;
+INNER JOIN "both"
+ON "both".person_id = person.id
+ORDER BY person.name ASC;
