@@ -20,3 +20,8 @@ imports:
 	cat imports/*.sql | sed '/^DROP/ d;' > imports/create.tmp
 	cat imports/drops.tmp imports/create.tmp > imports/import.sql
 	rm -f imports/*.tmp
+
+handout.tar: all
+	tar cvf $@ description.md
+	tar uvf $@ $(SQLFILES)
+	tar uvf $@ $(OUTFILES)

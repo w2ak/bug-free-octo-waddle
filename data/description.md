@@ -249,33 +249,6 @@ CREATE TABLE complete_cast(
 \copy complete_cast FROM 'complete_cast.csv' with (FORMAT 'csv', DELIMITER ',', HEADER true);
 ```
 
-# Queries
-
-1. Find the title and the year of production of each movie in which Nicholas Cage played. Order the
-results by year in descending order, then by title in ascending order.
-
-2. Find the name of each actor who played the character Morpheus in a video game, together with
-the name of the game. Order the results by year in descending order, then by title in ascending
-order.
-
-3. Find the name of all the people that have played in a movie they directed, and order them by their
-names (increasing alphabetical order).
-
-4. Find the name of all the people that are both actors and directors, and order them by name.
-
-5. Find the titles of the twenty movies having the largest number of directors and their number of
-directors, ordered by their number of directors in decreasing order.
-
-6. Find the titles of the movies that have only 1 and 10 as ratings, and order them by average rating (decreasing).
-
-7. Find the average number of cinema movies Dolores Fonzi played in, in her active years. A year is
-active if she plays in at least one movie produced that year.
-
-8. Find all the pairs of titles of movies m1 and m2 such that m1 directly or indirectly references m2,
-ordered first by the title of m1, then by the title of m2. We say there is an indirect reference from
-m1 to m2, if either (i) m1 references m2, or (ii) m1 references m3, and m3 indirectly references
-m2.
-
 # Query plans
 
 # Improving query performance
