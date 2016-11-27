@@ -264,8 +264,9 @@ names (increasing alphabetical order).
 4. Find the name of all the people that are both actors and directors, and order them by name.
 
 5. Find the titles of the twenty movies having the largest number of directors and their number of
-directors, ordered by their number of directors in decreasing order.6. Find the titles of the movies that have only 1 and 10 as ratings, and order them by average rating
-(decreasing).
+directors, ordered by their number of directors in decreasing order.
+
+6. Find the titles of the movies that have only 1 and 10 as ratings, and order them by average rating (decreasing).
 
 7. Find the average number of cinema movies Dolores Fonzi played in, in her active years. A year is
 active if she plays in at least one movie produced that year.
