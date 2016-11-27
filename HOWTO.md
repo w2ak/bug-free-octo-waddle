@@ -44,6 +44,22 @@ inf553dp=# \i ../data/imports/import.sql
 
 **_Advice_**: You might want to start this and let it run through the night.
 
+# Execute sql queries
+
+1. Chdir to the folder containing the queries.
+
+```
+neze@pc:~$ cd /path/to/data/
+```
+
+2. Use make to compute a query, for example q2.sql.
+
+```
+neze@pc:data/$ make q2.out
+```
+
+3. When the computation ends, the output is in `q2.out` and the timing information is `q2.time`.
+
 # Small tasks
 
 ## Clean up
