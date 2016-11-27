@@ -4,12 +4,16 @@
 WITH actors AS (
   SELECT person_id,movie_id
   FROM cast_info
-  WHERE role_id = 1
+  INNER JOIN role_type
+  ON role_id = role_type.id
+  AND role = 'actor'
 ),
 directors AS (
   SELECT person_id,movie_id
   FROM cast_info
-  WHERE role_id = 8
+  INNER JOIN role_type
+  ON role_id = role_type.id
+  AND role = 'director'
 ),
 "both" AS (
   SELECT DISTINCT actors.person_id
