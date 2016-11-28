@@ -11,6 +11,7 @@ all: $(OUTFILES)
 clean:
 	find -type f -name '*.out' -delete
 	find -type f -name '*.time' -delete
+	rm -f handout.tar
 
 imports:
 	rm -f imports/*.sql
