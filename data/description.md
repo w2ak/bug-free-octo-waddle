@@ -2,6 +2,10 @@
 
 The whole project can be found on [github](https://www.github.com/w2ak/bug-free-octo-waddle.git).
 
+Authors :
+* Carolina DE SENNE GARCIA
+* Clément DURAND
+
 # Loading
 
 ```sql
@@ -251,4 +255,163 @@ CREATE TABLE complete_cast(
 
 # Query plans
 
+## Query 1
+
+```
+                                      QUERY PLAN
+---------------------------------------------------------------------------------------
+ Sort  (cost=1128011.93..1128015.84 rows=1565 width=21)
+   Sort Key: movie.production_year DESC, movie.title
+   CTE cage
+     ->  Gather  (cost=1000.00..15173.01 rows=2 width=4)
+           Workers Planned: 2
+           ->  Parallel Seq Scan on aka_name  (cost=0.00..14172.81 rows=1 width=4)
+                 Filter: (name = 'Cage, Nicholas'::text)
+   ->  Nested Loop  (cost=0.49..1112755.88 rows=1565 width=21)
+         ->  Hash Join  (cost=0.07..1112034.50 rows=1565 width=4)
+               Hash Cond: (cast_info.person_id = cage.person_id)
+               ->  Seq Scan on cast_info  (cost=0.00..910687.48 rows=53688348 width=8)
+               ->  Hash  (cost=0.04..0.04 rows=2 width=4)
+                     ->  CTE Scan on cage  (cost=0.00..0.04 rows=2 width=4)
+         ->  Index Scan using movie_pkey on movie  (cost=0.43..0.45 rows=1 width=25)
+               Index Cond: (id = cast_info.movie_id)
+(15 rows)
+```
+
+## Query 8
+
+```
+                                              QUERY PLAN
+------------------------------------------------------------------------------------------------------
+ HashAggregate  (cost=14805.09..14959.45 rows=15436 width=8)
+   Group Key: indirect.src, indirect.dst
+   CTE references
+     ->  HashAggregate  (cost=202.06..207.62 rows=556 width=8)
+           Group Key: movie_link.movie_id, movie_link.linked_movie_id
+           ->  Hash Join  (cost=1.24..199.28 rows=556 width=8)
+                 Hash Cond: (movie_link.link_type_id = link_type.id)
+                 ->  Seq Scan on movie_link  (cost=0.00..154.99 rows=9999 width=12)
+                 ->  Hash  (cost=1.23..1.23 rows=1 width=4)
+                       ->  Seq Scan on link_type  (cost=0.00..1.23 rows=1 width=4)
+                             Filter: ((link)::text = 'references'::text)
+   CTE indirect
+     ->  Recursive Union  (cost=0.00..10738.57 rows=154356 width=12)
+           ->  CTE Scan on "references"  (cost=0.00..11.12 rows=556 width=12)
+           ->  Hash Join  (cost=18.07..764.03 rows=15380 width=12)
+                 Hash Cond: (indirect_1.src = references_1.dst)
+                 Join Filter: (references_1.src <> indirect_1.dst)
+                 ->  WorkTable Scan on indirect indirect_1  (cost=0.00..111.20 rows=5560 width=12)
+                 ->  Hash  (cost=11.12..11.12 rows=556 width=8)
+                       ->  CTE Scan on "references" references_1  (cost=0.00..11.12 rows=556 width=8)
+   ->  CTE Scan on indirect  (cost=0.00..3087.12 rows=154356 width=8)
+(21 rows)
+```
+
 # Improving query performance
+
+## Query 2
+
+### Original query
+
+```sql
+WITH morpheus_id AS (
+    SELECT id
+    FROM char_name
+    WHERE name = 'Morpheus'
+),
+video_game AS (
+    SELECT id
+    FROM movie_type
+    WHERE kind = 'video game'
+),
+movie_with_morpheus AS (
+    SELECT person_id,movie_id
+    FROM cast_info
+    INNER JOIN morpheus_id
+            ON morpheus_id.id = cast_info.person_role_id
+)
+SELECT person.name,title
+      FROM movie
+INNER JOIN video_game
+        ON video_game.id = movie.kind_id
+INNER JOIN movie_with_morpheus
+        ON movie_with_morpheus.movie_id = movie.id
+INNER JOIN person
+        ON person.id = person_id
+ORDER BY production_year DESC, title ASC;
+```
+
+There are many searches to do, which is obviously costly (also in joins).
+
+### Estimated cost
+
+Obtained in Query Plan.
+
+```
+(cost=47747.19..47747.19 rows=1 width=36)
+```
+
+### Improvement
+
+We used indexes to reduce search and joins costs. To select on a particular string value we used a Hash index.
+
+```sql
+CREATE INDEX morpheus_id_name_index ON char_name USING hash (name);
+CREATE INDEX cast_info_prid_index ON cast_info (person_role_id);
+CREATE INDEX movie_kid_index ON movie (kind_id);
+CREATE INDEX person_index ON person (id);
+```
+
+### New cost
+
+Obtained in Query Plan.
+
+```
+(cost=72.78..72.78 rows=1 width=36)
+```
+
+## Query 7
+
+### Original query
+
+```sql
+WITH fonzi_movies AS (
+  SELECT movie.production_year AS year
+        FROM person
+  INNER JOIN cast_info
+          ON cast_info.person_id = person.id
+  INNER JOIN movie
+          ON cast_info.movie_id = movie.id
+  INNER JOIN movie_type
+          ON movie_type.id = movie.kind_id
+         AND movie_type.kind = 'movie'
+  WHERE person.name = 'Fonzi, Dolores'
+),
+movie_count AS (
+  SELECT COUNT(year) AS year_count
+  FROM fonzi_movies
+  GROUP BY year
+)
+SELECT AVG(year_count)
+FROM movie_count;
+```
+
+### Original cost
+
+```
+(cost=1179945.93..1179945.94 rows=1 width=32)
+```
+
+### Improvement
+
+```sql
+CREATE INDEX person_name_index ON person USING hash (name);
+CREATE INDEX cast_info_pid_index ON cast_info (person_id);
+CREATE INDEX movie_id_index ON movie (id);
+```
+
+### New cost
+
+```
+(cost=8906.49..8906.50 rows=1 width=32)
+```

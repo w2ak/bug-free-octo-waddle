@@ -6,7 +6,7 @@ WITH actors AS (
   FROM cast_info
   INNER JOIN role_type
   ON role_id = role_type.id
-  AND role = 'actor'
+  AND ( role = 'actor' OR role = 'actress' )
 ),
 directors AS (
   SELECT person_id,movie_id

@@ -1,0 +1,5 @@
+-- Improve query 7
+-- Using indexes
+CREATE INDEX person_name_index ON person USING hash (name);
+CREATE INDEX cast_info_pid_index ON cast_info (person_id);
+CREATE INDEX movie_id_index ON movie (id);

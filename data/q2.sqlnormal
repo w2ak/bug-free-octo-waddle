@@ -1,0 +1,4 @@
+DROP INDEX morpheus_id_name_index;
+DROP INDEX cast_info_prid_index;
+DROP INDEX movie_kid_index;
+DROP INDEX person_index;

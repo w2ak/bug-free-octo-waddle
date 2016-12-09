@@ -1,0 +1,4 @@
+-- Question 7 back to normal
+DROP INDEX person_name_index;
+DROP INDEX cast_info_pid_index;
+DROP INDEX movie_id_index;

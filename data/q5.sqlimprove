@@ -1,0 +1,1 @@
+CREATE INDEX cast_info_role_id_index ON cast_info (role_id);

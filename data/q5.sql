@@ -8,12 +8,10 @@ WITH directors_count AS (
   ON role_id = role_type.id
   AND role = 'director'
   GROUP BY movie_id
-  ORDER BY "count" DESC
-  LIMIT 20
 )
 SELECT title,"count"
 FROM directors_count
 INNER JOIN movie
-ON movie.id = movie_id;
--- ORDER BY "count" DESC
--- LIMIT 20;
+ON movie.id = movie_id
+ORDER BY "count" DESC
+LIMIT 20;

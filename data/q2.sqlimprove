@@ -1,0 +1,5 @@
+-- Improve Question 2 - with indexes
+CREATE INDEX morpheus_id_name_index ON char_name USING hash (name);
+CREATE INDEX cast_info_prid_index ON cast_info (person_role_id);
+CREATE INDEX movie_kid_index ON movie (kind_id);
+CREATE INDEX person_index ON person (id);
