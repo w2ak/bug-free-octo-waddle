@@ -3,5 +3,7 @@
 *.swp
 *.txt
 *.tar
+*.tar.gz
+*.asc
 *.explain
 *.improved

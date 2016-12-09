@@ -33,9 +33,15 @@ imports:
 	cat imports/drops.tmp imports/create.tmp > imports/import.sql
 	rm -f imports/*.tmp
 
-handout.tar: all
+handout.tar:
 	tar cvf $@ description.md
 	tar uvf $@ Makefile
 	tar uvf $@ $(SQLFILES)
 	tar uvf $@ $(OUTFILES)
 	tar uvf $@ q1.explain q8.explain q2.improved q7.improved q2.explain q7.explain
+
+handout.asc: handout.tar
+	gpg2 --armor --output $@ --detach-sign $<
+
+handout.tar.gz: handout.tar handout.asc
+	tar czvf $@ $^
