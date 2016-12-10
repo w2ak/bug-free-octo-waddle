@@ -1,5 +1,5 @@
 -- Question 7
-EXPLAIN WITH fonzi_movies AS (
+WITH fonzi_movies AS (
   SELECT movie.production_year AS year
         FROM person
   INNER JOIN cast_info
