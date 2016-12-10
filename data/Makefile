@@ -19,7 +19,8 @@ all: $(OUTFILES) q1.explain q8.explain q2.improved q7.improved
 	psql inf553dp -f $*.sqlnormal
 
 clean:
-	find -type f -name '*.exp' -delete
+	find -type f -name '*.explain' -delete
+	find -type f -name '*.improved' -delete
 	find -type f -name '*.out' -delete
 	find -type f -name '*.time' -delete
 	rm -f handout.tar
