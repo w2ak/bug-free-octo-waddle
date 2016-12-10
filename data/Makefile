@@ -34,12 +34,15 @@ imports:
 	cat imports/drops.tmp imports/create.tmp > imports/import.sql
 	rm -f imports/*.tmp
 
-handout.tar:
-	tar cvf $@ description.md
+authors.txt:
+	echo "Carolina De Senne Garcia <carolina.de-senne-garcia@polytechnique.edu>" > $@
+	echo "Clément Durand <clement.durand@polytechnique.edu>" >> $@
+
+handout.tar: authors.txt
+	tar cvf $@ $< description.md
 	tar uvf $@ Makefile
 	tar uvf $@ $(SQLFILES)
 	tar uvf $@ $(OUTFILES)
-	tar uvf $@ q1.explain q8.explain q2.improved q7.improved q2.explain q7.explain
 
 handout.asc: handout.tar
 	gpg2 --armor --output $@ --detach-sign $<
