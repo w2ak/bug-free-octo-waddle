@@ -8,28 +8,17 @@ WITH ratings AS (
   ON info_type.info = 'rating'
   AND info_type.id = info_type_id
 ),
-middle_ratings AS (
-  SELECT DISTINCT movie_id
-  FROM ratings
-  WHERE info > 1
-  AND info <10
-),
-extreme_ratings AS (
-  SELECT DISTINCT movie_id
-  FROM ratings
-  EXCEPT
+extremes AS (
   SELECT movie_id
-  FROM middle_ratings
-),
-averages AS (
-  SELECT ratings.movie_id,AVG(info) AS average
-  FROM ratings
-  INNER JOIN extreme_ratings
-  ON extreme_ratings.movie_id = ratings.movie_id
-  GROUP BY ratings.movie_id
+  FROM movie_rating
+  INNER JOIN info_type
+  ON info_type.info = 'votes distribution'
+  AND movie_rating.info like '_........_'
 )
-SELECT title,average
-FROM averages
+SELECT title,ratings.info AS average
+FROM ratings
+INNER JOIN extremes
+ON extremes.movie_id = ratings.movie_id
 INNER JOIN movie
-ON averages.movie_id = movie.id
-ORDER BY average DESC;
+ON extremes.movie_id = movie.id
+ORDER BY average DESC, title ASC;
